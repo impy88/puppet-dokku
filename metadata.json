@@ -1,0 +1,24 @@
+{
+  "name": "impy-dokku",
+  "version": "0.1.0",
+  "author": "Maxim Kotelnikov",
+  "summary": "Puppet Dokku module",
+  "license": "MIT",
+  "source": "https://github.com/impy88/puppet-dokku.git",
+  "project_page": "https://github.com/impy88/puppet-dokku",
+  "issues_url": "https://github.com/impy88/puppet-dokku/issues",
+  "description": "This module allows you to configure and install a puppet based Dokku",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04"
+      ]
+    }
+  ],
+  "dependencies": [
+    {"name":"puppetlabs/concat","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs/stdlib","version_requirement":">= 3.2.0"}
+    {"name":"puppetlabs/apt","version_requirement":">= 2.0.0"}
+  ]
+}
