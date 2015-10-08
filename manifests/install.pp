@@ -30,11 +30,10 @@ class dokku::install (
     source   => $package_source_location,
     revision => $ensure,
   }
-  ->
+  ~>
   exec { 'run_dokku_installer':
     cwd     => '/usr/src/dokku',
     command => '/usr/bin/make install',
     timeout => 1800,
-    unless  => '/usr/bin/which dokku',
   }
 }
