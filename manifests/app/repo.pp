@@ -61,18 +61,20 @@ class dokku::app::repo (
     identity => "/etc/pki/${key_name}",
     source   => $source,
     revision => $revision,
+    notify   => [
+      Exec['create_tarball'],
+      Exec["/bin/cat ${tarball} | /usr/local/bin/dokku tar:in ${app}"]
+    ]
   }
-  ->
+
   exec { 'create_tarball':
     command => "/bin/tar -C ${path} -zcvf ${tarball} .",
     timeout => 1800,
-    unless  => "/usr/local/bin/dokku ls | /bin/grep -c '${app}\|running'",
   }
   ->
   exec { "/bin/cat ${tarball} | /usr/local/bin/dokku tar:in ${app}":
     cwd     => '/usr/src/dokku',
     timeout => 1800,
-    unless  => "/usr/local/bin/dokku ls | /bin/grep -c '${app}\|running'",
     require => [
       Class['dokku::install'],
       Class['dokku::app::create']
